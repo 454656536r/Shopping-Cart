@@ -241,7 +241,7 @@
                                 </p>
                             </td>
                             <td>￥{{item.price}}</td>
-                            <td style="width: 270px;"><button>+</button> 1 <button>-</button></td>
+                            <td style="width: 270px;"> 1 </td>
                             <td style="width: 285px;"><button class="daleat" @click="del(index)">删除</button></td>
                         </tr>
                     </tbody>
@@ -387,9 +387,9 @@
                 // 删除
                 del(index) {
                     clearInterval(this.countdownInterval);
+                    this.dayu.splice(index, 1);
                     this.minutes = 0;
                     this.seconds = 0;
-                    this.dayu.splice(index, 1);
                     this.prices = 0;
                     for (let i = 0; i < this.dayu.length; i++) {
                         this.prices += parseInt(this.dayu[i].price);

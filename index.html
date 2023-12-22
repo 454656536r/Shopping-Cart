@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<style>
+    .box {
+        width: 1202px;
+        /* height: 1000px; */
+        border: 1px solid black;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .shopingbox {
+        width: 1180px;
+        height: 730px;
+        /* border: 1px solid black; */
+        margin: auto;
+        margin: 10px;
+        /* padding: 10px; */
+    }
+
+    .commodity {
+        width: 196px;
+        /* height: 240px; */
+        float: left;
+        padding: 5px;
+        margin: 14px;
+        border: 1px solid rgb(203, 203, 203);
+    }
+
+    .imgs {
+        width: 100%;
+        height: 220px;
+    }
+
+    .beonsale {
+        border: none;
+        background-color: blueviolet;
+        color: white;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 13px;
+        margin: 5px;
+    }
+
+    .original {
+        color: gray;
+        font-size: 10px;
+    }
+
+    .information {
+        width: 1150px;
+        height: 120px;
+        margin: auto;
+        /* background-color: aquamarine; */
+    }
+
+    .updew {
+        width: 100%;
+        height: 60px;
+        border-bottom: 5px solid gainsboro;
+    }
+
+    .time {
+        float: left;
+        border: none;
+        height: 60px;
+        width: 130px;
+        border-bottom: 4px solid rgb(189, 0, 88);
+        color: rgb(189, 0, 88);
+        background-color: transparent;
+    }
+
+    .timet {
+        float: left;
+        border: none;
+        height: 60px;
+        width: 130px;
+        font-size: 18px;
+        color: rgb(189, 0, 88);
+        background-color: transparent;
+    }
+
+    .shang {
+        color: gray;
+    }
+
+    .ShoppingCart {
+        width: 1150px;
+        margin: auto;
+    }
+
+    .commodity_information {
+        width: 100%;
+        height: 60px;
+        /* float: left; */
+        background-color: gainsboro;
+        border-radius: 5px;
+        /* border: 1px solid gray; */
+        border: none;
+    }
+
+    .own {
+        width: 1150px;
+        height: 60px;
+        /* background-color: rgb(237, 135, 0); */
+    }
+
+    .shelves {
+        text-align: center;
+        width: 1150px;
+    }
+
+    .take {
+        float: left;
+        width: 90px;
+        height: 110px;
+        /* margin-top: 10px;
+        margin-left: 10px; */
+    }
+
+    .Selected {
+        float: left;
+        margin: 10px;
+        margin-top: 40px;
+    }
+
+    .sizes {
+        float: left;
+        width: 150px;
+    }
+
+    .freight {
+        width: 1148px;
+        border: 1px solid rgb(105, 105, 105);
+        border-top: none;
+    }
+
+    .freightfun {
+        border: 1px solid greenyellow;
+        border-radius: 10px;
+        color: greenyellow;
+        margin: 10px;
+        background-color: transparent;
+    }
+
+    .payment {
+        width: 1150px;
+        height: 180px;
+        margin-top: 100px;
+        border: 1px solid black;
+    }
+
+    #select {
+        width: 120px;
+        height: 30px;
+        border-radius: 5px;
+        margin: 20px;
+        color: rgb(189, 0, 88);
+        border: 1px solid rgb(189, 0, 88);
+    }
+
+    .settlement {
+        float: right;
+        margin: 20px;
+        margin-right: 130px;
+    }
+
+    .botton {
+        width: 100%;
+        margin-top: 50px;
+        height: 60px;
+        background-color: rgb(222, 222, 222);
+    }
+
+    .immediately {
+        border: none;
+        background-color: rgb(189, 0, 88);
+        color: white;
+        float: right;
+        width: 150px;
+        height: 60px;
+        margin-right: -473px;
+    }
+
+    .daleat {
+        border: none;
+        background-color: transparent;
+    }
+</style>
+
+<body>
+    <div class="box" id="box">
+        <div class="shopingbox">
+            <div class="commodity" v-for="(item, index) in date">
+                <img :src="item.imageURL" class="imgs" @click="addToCart(item)" />
+                <button class="beonsale">特卖价</button>
+                <span><b>￥{{item.price}}</b>&emsp;<del class="original">￥{{item.original}}</del>&emsp;<i
+                        class="original">{{item.discount}}折</i></span>
+                <p style="font-size: 15px; color: gray;">{{item.introduce}}</p>
+            </div>
+        </div>
+        <div class="information">
+            <div class="updew"><button class="time"><b>特卖商品{{ minutes }}:{{ seconds }}</b></button></div>
+            <p class="pes">配送至 <b>广州市 </b><span class="shang">| 勾选商品"<input
+                        type="checkbox">"即可锁定库存20分钟，倒计时内不用担心商品被抢走</span>
+            </p>
+        </div>
+        <div class="ShoppingCart">
+            <table class="commodity_information">
+                <thead>
+                    <tr>
+                        <th>商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+
+            </table>
+            <div class="own">
+                <button class="timet">唯品自营</button>
+            </div>
+            <div style="border: 1px solid rgb(105, 105, 105);">
+                <table style="width:1150px;">
+                    <tbody class="shelves">
+                        <tr v-for="(item, index) in dayu">
+                            <td style="width: 290px;">
+                                <p style="font-size: 15px; width: 50px; color: gray;">
+                                    <input type="checkbox" class="Selected">
+                                <p style="margin: 10px;"><img :src="item.imageURL" class="take" /></p>
+
+                                <p style="color: gray;" class="sizes">{{item.introduce}}</p>
+
+                                </p>
+                            </td>
+                            <td>￥{{item.price}}</td>
+                            <td style="width: 270px;"><button>+</button> 1 <button>-</button></td>
+                            <td style="width: 285px;"><button class="daleat" @click="del(index)">删除</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="freight">
+                <button class="freightfun">运费</button>
+                <span style="color: gray; font-size: 13px;">新人免邮</span>
+            </div>
+            <div class="payment">
+                <select name="" id="select">
+                    <option value="">使用优惠券</option>
+                    <option value="">￥10</option>
+                    <option value="">￥50</option>
+                </select>
+                <div class="settlement">
+                    <p>共计 &nbsp 件商品 商品金额 &emsp;<span style="color: rgb(189, 0, 88);">￥{{prices}}</span></p>
+                    <p>总金额（未含运费）&emsp;<span style="color: rgb(189, 0, 88); font-size: 20px;">￥{{prices}}</span></p>
+                </div>
+                <div class="botton">
+                    <p style="color: gray;float: right;">请在倒计时结束前结算</p>
+                    <button class="immediately">立即结算&emsp;{{ minutes }}:{{ seconds }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data() {
+
+                return {
+                    countdownTime: 20 * 60,
+                    countdownInterval: null,
+                    minutes: 0,
+                    seconds: 0,
+                    imageURL: "",
+                    prices: 0,
+                    date: [
+                        {
+                            imageURL: "https://t13.baidu.com/it/u=1460749898,1805223145&fm=224&app=112&size=h200&n=0&f=JPEG&fmt=auto?sec=1703350800&t=fba49817e465a3f0770829352ee90c68",
+                            price: "200",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://t13.baidu.com/it/u=473380737,1357738972&fm=224&app=112&size=h200&n=0&f=JPEG&fmt=auto?sec=1703350800&t=1dfe33dc62d14ad64df022546c8b48de",
+                            price: "230",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://t14.baidu.com/it/u=1886366303,3673303203&fm=224&app=112&size=h200&n=0&f=PNG?sec=1703350800&t=3f879bde099d781acaf5c54d26cc5cc9",
+                            price: "300",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://t13.baidu.com/it/u=418684889,4262294681&fm=224&app=112&size=h200&n=0&f=PNG?sec=1703350800&t=7741cab3036e23b643a14a3f39668774",
+                            price: "240",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://t14.baidu.com/it/u=913213788,673880407&fm=224&app=112&size=h200&n=0&f=PNG?sec=1703350800&t=b20d0481c26f3814becb9d09e1df9def",
+                            price: "400",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://img2.baidu.com/it/u=3448840784,362828456&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1703350800&t=a1d16427fe9770324d2c3c2b26da55af",
+                            price: "250",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://img2.baidu.com/it/u=2348752281,556775737&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1703350800&t=c00000b19775eb7291c5b575ee52c260",
+                            price: "500",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://img1.baidu.com/it/u=330865812,2178066510&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1703350800&t=bebd6baae0a1304da0f3587c18a5b27a",
+                            price: "260",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://img2.baidu.com/it/u=3864240761,632002265&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1703350800&t=75cf6b1ec4546cc2d31015ab142c99bc",
+                            price: "700",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                        {
+                            imageURL: "https://img2.baidu.com/it/u=2168060280,3451073831&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1703350800&t=3fed76dc889fa4466f73b664ca3ee263",
+                            price: "280",
+                            original: "500",
+                            discount: "2.5",
+                            introduce: "【新中式改良汉服旗袍连衣裙】国风立领盘扣刺绣微透..."
+                        },
+                    ],
+                    dayu: []
+                }
+            },
+            methods: {
+
+                updateCountdown() {
+                    if (this.countdownTime > 0) {
+                        this.minutes = Math.floor(this.countdownTime / 60);
+                        this.seconds = this.countdownTime % 60;
+                        this.countdownTime--;
+                    } else {
+                        clearInterval(this.countdownInterval);
+                    }
+                },
+                // 添加到购物车
+                addToCart(item) {
+                    const sliket = {
+                        imageURL: item.imageURL,
+                        price: item.price,
+                        introduce: item.introduce
+                    }
+                    const splise = {
+                        price: item.price,
+                    }
+                    console.log(splise);
+                    this.prices += parseInt(item.price);
+                    this.countdownInterval = setInterval(() => {
+                        this.updateCountdown();
+                    }, 1000); // 每秒更新一次倒计时
+                    this.dayu.push(sliket);
+                },
+                // 删除
+                del(index) {
+                    clearInterval(this.countdownInterval);
+                    this.minutes = 0;
+                    this.seconds = 0;
+                    this.dayu.splice(index, 1);
+                    this.prices = 0;
+                    for (let i = 0; i < this.dayu.length; i++) {
+                        this.prices += parseInt(this.dayu[i].price);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

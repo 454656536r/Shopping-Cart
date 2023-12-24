@@ -265,7 +265,7 @@
                 </div>
                 <div class="botton">
                     <p style="color: gray;float: left; margin-left: 800px; margin-top: 20px;">请在倒计时结束前结算</p>
-                    <button class="immediately">立即结算&emsp;{{ minutes }}:{{ seconds }}</button>
+                    <button class="immediately" @click="checkout">立即结算&emsp;{{ minutes }}:{{ seconds }}</button>
                 </div>
             </div>
         </div>
@@ -358,7 +358,16 @@
                 }
             },
             methods: {
+                checkout() {
+                    if (this.dayu.length === 0) {
+                        alert("还未选择商品");
+                    } else {
+                        alert("已付款")
+                        this.dayu = []
+                        this.prices = 0;
+                    }
 
+                },
                 updateCountdown() {
                     if (this.countdownTime > 0) {
                         this.minutes = Math.floor(this.countdownTime / 60);

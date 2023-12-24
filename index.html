@@ -168,14 +168,15 @@
 
     .settlement {
         float: right;
-        margin: 20px;
+        margin: 12px;
         margin-right: 130px;
     }
 
     .botton {
         width: 100%;
-        margin-top: 50px;
+        /* margin-top: 50px; */
         height: 60px;
+        float: right;
         background-color: rgb(222, 222, 222);
     }
 
@@ -186,7 +187,7 @@
         float: right;
         width: 150px;
         height: 60px;
-        margin-right: -473px;
+        /* margin-right: -473px; */
     }
 
     .daleat {
@@ -263,7 +264,7 @@
                     <p>总金额（未含运费）&emsp;<span style="color: rgb(189, 0, 88); font-size: 20px;">￥{{prices}}</span></p>
                 </div>
                 <div class="botton">
-                    <p style="color: gray;float: right;">请在倒计时结束前结算</p>
+                    <p style="color: gray;float: left; margin-left: 800px; margin-top: 20px;">请在倒计时结束前结算</p>
                     <button class="immediately">立即结算&emsp;{{ minutes }}:{{ seconds }}</button>
                 </div>
             </div>
